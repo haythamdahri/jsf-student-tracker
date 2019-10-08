@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!-- Fetch students from database to fill student attributes before rendering the view to the user -->
+<f:metadata>
+	<f:event listener="#{studentController.loadStudents()}"
+		type="preRenderView"></f:event>
+</f:metadata>
+<h:head>
+	<title>List Of Students Test</title>
+</h:head>
+<h:body>
+	<h3>Database Students List</h3>
+	
+	<hr />
+	
+	<h:dataTable value="#{studentController.students}" var="tempStudent" border="1" >
+		<h:column>
+			<!-- The column header -->
+			<f:facet name="header">First Name</f:facet>
+			
+			<!-- THe column value -->
+			#{tempStudent.firstName}
+		</h:column>
+		
+		<h:column>
+			<!-- The column header -->
+			<f:facet name="header">Last Name</f:facet>
+			
+			<!-- THe column value -->
+			#{tempStudent.lastName}
+		</h:column>
+		
+		<h:column>
+			<!-- The column header -->
+			<f:facet name="header">Email</f:facet>
+			
+			<!-- THe column value -->
+			#{tempStudent.email}
+		</h:column>
+	</h:dataTable>
+	
+	<h:messages />
+</h:body>
+</html>
